@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<config>
+  <global>        
+    <models>
+      <cronimportexport>
+        <class>Meta13_CronImportExport_Model</class>
+      </cronimportexport>
+    </models>
+  </global>    
+  <crontab>
+    <jobs>            
+      <meta13_cronexport>
+        <schedule><cron_expr>0 2 * * *</cron_expr></schedule>
+        <run><model>cronimportexport/observer::ExportProducts</model></run>
+      </meta13_cronexport>
+
+      <meta13_cronimport>
+        <schedule><cron_expr>0 1 * * *</cron_expr></schedule>
+        <run><model>cronimportexport/observer::ImportProducts</model></run>
+      </meta13_cronimport>
+    </jobs>
+  </crontab>
+</config> 
