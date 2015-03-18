@@ -63,6 +63,12 @@ class Meta13_CronImportExport_Model_Observer {
             $import->importSource();
             $import->invalidateIndex();
         }
+		
+		echo "Re Indexing Products\n";
+        $indexingProcesses = Mage::getSingleton('index/indexer')->getProcessesCollection(); 
+        foreach ($indexingProcesses as $process) {
+            $process->reindexEverything();
+        }
 
         echo "Finished File Import at " . date('Y-m-d H:i:s') . "\n";
     }
